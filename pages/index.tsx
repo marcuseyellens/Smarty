@@ -83,7 +83,7 @@ class Index extends React.Component {
     return (
       <Layout>
         <Grid container spacing={16}>
-          {projects.length === 0 && <p>还没有项目，快去创建吧</p>}
+          {projects.length === 0 && <p>Don't have a project yet, go create one!</p>}
           {projects.length > 0 && projects.map(this.renderProject)}
         </Grid>
       </Layout>
@@ -102,22 +102,22 @@ class Index extends React.Component {
             </Typography>
             <LinearProgress style={{ margin: '10px 0' }} color="primary" variant="determinate" value={progress} />
             <Grid container spacing={16}>
-              <InfoBlock title={`${web3.utils.fromWei(project.goal, 'ether')} ETH`} description="募资上限" />
-              <InfoBlock title={`${web3.utils.fromWei(project.minInvest, 'ether')} ETH`} description="最小投资金额" />
-              <InfoBlock title={`${web3.utils.fromWei(project.maxInvest, 'ether')} ETH`} description="最大投资金额" />
-              <InfoBlock title={`${project.investorCount}人`} description="参投人数" />
-              <InfoBlock title={`${web3.utils.fromWei(project.balance, 'ether')} ETH`} description="已募资金额" />
+              <InfoBlock title={`${web3.utils.fromWei(project.goal, 'ether')} ETH`} description="Fundraising Cap" />
+              <InfoBlock title={`${web3.utils.fromWei(project.minInvest, 'ether')} ETH`} description="Minimum Investment Amount" />
+              <InfoBlock title={`${web3.utils.fromWei(project.maxInvest, 'ether')} ETH`} description="Maximum Investment Amount" />
+              <InfoBlock title={`${project.investorCount}person`} description="Number of participants" />
+              <InfoBlock title={`${web3.utils.fromWei(project.balance, 'ether')} ETH`} description=" Amount of funds raised" />
             </Grid>
           </CardContent>
           <CardActions>
             <Link route={`/projects/${project.address}`}>
               <Button size="small" color="primary">
-                立即投资
+                Invest Now
               </Button>
             </Link>
             <Link route={`/projects/${project.address}`}>
               <Button size="small" color="secondary">
-                查看详情
+                View Details
               </Button>
             </Link>
           </CardActions>

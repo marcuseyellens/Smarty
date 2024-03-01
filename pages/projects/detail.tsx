@@ -86,23 +86,23 @@ class ProjectDetail extends React.Component {
 
     // 字段合规检查
     if (amount <= 0) {
-      return this.setState({ errmsg: '投资金额必须大于0' });
+      return this.setState({ errmsg: 'Investment amount must be greater than 0' });
     }
     if (amount < minInvestInEther) {
-      return this.setState({ errmsg: '投资金额必须大于最小投资金额' });
+      return this.setState({ errmsg: 'The investment amount must be greater than the minimum investment amount' });
     }
     if (amount > maxInvestInEther) {
-      return this.setState({ errmsg: '投资金额必须小于最大投资金额' });
+      return this.setState({ errmsg: 'The investment amount must be less than the maximum investment amount' });
     }
 
     try {
       this.setState({ loading: true, errmsg: '' });
 
-      // 获取账户
+      // Getting an account
       const accounts = await web3.eth.getAccounts();
       const owner = accounts[0];
 
-      // 发起转账
+      // Initiation of transfers
       const contract = Project(this.props.project.address);
       const result = await contract.methods
         .contribute()
@@ -132,12 +132,12 @@ class ProjectDetail extends React.Component {
       const contract = Project(this.props.project.address);
       const isInvestor = await contract.methods.investors(sender).call();
       if (!isInvestor) {
-        return window.alert('只有投资人才有权投票');
+        return window.alert('Only investors are entitled to vote.');
       }
 
       const result = await contract.methods.approvePayment(i).send({ from: sender, gas: '5000000' });
 
-      window.alert('投票成功');
+      window.alert('The vote was successful.');
 
       setTimeout(() => {
         location.reload();
@@ -157,15 +157,15 @@ class ProjectDetail extends React.Component {
       const accounts = await web3.eth.getAccounts();
       const sender = accounts[0];
 
-      // 检查账户
+      // Checking accounts
       if (sender !== this.props.project.owner) {
-        return window.alert('只有管理员能创建资金支出请求');
+        return window.alert('Only administrators can create fund expenditure requests');
       }
 
       const contract = Project(this.props.project.address);
       const result = await contract.methods.doPayment(i).send({ from: sender, gas: '5000000' });
 
-      window.alert('资金划转成功');
+      window.alert('Successful transfer of funds');
 
       setTimeout(() => {
         location.reload();
@@ -184,11 +184,11 @@ class ProjectDetail extends React.Component {
     return (
       <Layout>
         <Typography variant="title" color="inherit" style={{ margin: '15px 0' }}>
-          项目详情
+          Project Details
         </Typography>
         {this.renderBasicInfo(project)}
         <Typography variant="title" color="inherit" style={{ margin: '30px 0 15px' }}>
-          资金支出请求
+          Requests for expenditure of funds
         </Typography>
         {this.renderPayments(project)}
       </Layout>
@@ -205,18 +205,18 @@ class ProjectDetail extends React.Component {
         </Typography>
         <LinearProgress style={{ margin: '10px 0' }} color="primary" variant="determinate" value={progress} />
         <Grid container spacing={16}>
-          <InfoBlock title={`${web3.utils.fromWei(project.goal, 'ether')} ETH`} description="募资上限" />
-          <InfoBlock title={`${web3.utils.fromWei(project.minInvest, 'ether')} ETH`} description="最小投资金额" />
-          <InfoBlock title={`${web3.utils.fromWei(project.maxInvest, 'ether')} ETH`} description="最大投资金额" />
-          <InfoBlock title={`${project.investorCount}人`} description="参投人数" />
-          <InfoBlock title={`${web3.utils.fromWei(project.balance, 'ether')} ETH`} description="已募资金额" />
+          <InfoBlock title={`${web3.utils.fromWei(project.goal, 'ether')} ETH`} description="fundraising cap" />
+          <InfoBlock title={`${web3.utils.fromWei(project.minInvest, 'ether')} ETH`} description="Minimum Investment Amount" />
+          <InfoBlock title={`${web3.utils.fromWei(project.maxInvest, 'ether')} ETH`} description="Maximum Investment Amount" />
+          <InfoBlock title={`${project.investorCount}人`} description="Number of participants" />
+          <InfoBlock title={`${web3.utils.fromWei(project.balance, 'ether')} ETH`} description="amount of funds raised" />
         </Grid>
         <Grid container spacing={16}>
           <Grid item md={12}>
             <TextField
               required
               id="amount"
-              label="投资金额"
+              label="investment amount"
               style={{ marginRight: '15px' }}
               value={this.state.amount}
               onChange={this.getInputHandler('amount')}
@@ -224,7 +224,7 @@ class ProjectDetail extends React.Component {
               InputProps={{ endAdornment: 'ETH' }}
             />
             <Button size="small" variant="raised" color="primary" onClick={this.onSubmit}>
-              {this.state.loading ? <CircularProgress color="secondary" size={24} /> : '立即投资'}
+              {this.state.loading ? <CircularProgress color="secondary" size={24} /> : 'Invest Now'}
             </Button>
             {!!this.state.errmsg && (
               <Typography component="p" style={{ color: 'red' }}>
@@ -256,12 +256,12 @@ class ProjectDetail extends React.Component {
         <Table style={{ marginBottom: '30px' }}>
           <TableHead>
             <TableRow>
-              <TableCell>支出理由</TableCell>
-              <TableCell numeric>支出金额</TableCell>
-              <TableCell>收款人</TableCell>
-              <TableCell>已完成？</TableCell>
-              <TableCell>投票状态</TableCell>
-              <TableCell>操作</TableCell>
+              <TableCell> Reasons for expenditure </TableCell>
+              <TableCell numeric> Amount for spent</TableCell>
+              <TableCell>Payee</TableCell>
+              <TableCell> Completed?</TableCell>
+              <TableCell>Voting Status</TableCell>
+              <TableCell>Manipulate</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -270,7 +270,7 @@ class ProjectDetail extends React.Component {
         </Table>
         <Link route={`/projects/${project.address}/payments/create`}>
           <Button variant="raised" color="primary">
-            创建资金支出请求
+            Creating requests for expenditure of funds
           </Button>
         </Link>
       </Paper>
@@ -293,19 +293,19 @@ class ProjectDetail extends React.Component {
         <TableCell>{payment.description}</TableCell>
         <TableCell numeric>{web3.utils.fromWei(payment.amount, 'ether')} ETH</TableCell>
         <TableCell>{payment.receiver}</TableCell>
-        <TableCell>{payment.completed ? '是' : '否'}</TableCell>
+        <TableCell>{payment.completed ? 'yes' : 'no'}</TableCell>
         <TableCell>
           {payment.voterCount}/{project.investorCount}
         </TableCell>
         <TableCell>
           {canApprove && (
             <Button size="small" color="primary" onClick={() => this.approvePayment(index)}>
-              {this.isApproving(index) ? <CircularProgress color="secondary" size={24} /> : '投赞成票'}
+              {this.isApproving(index) ? <CircularProgress color="secondary" size={24} /> : 'vote in favor'}
             </Button>
           )}
           {canDoPayment && (
             <Button size="small" color="primary" onClick={() => this.doPayment(index)}>
-              {this.isPaying(index) ? <CircularProgress color="primary" size={24} /> : '资金划转'}
+              {this.isPaying(index) ? <CircularProgress color="primary" size={24} /> : 'Funds transferred'}
             </Button>
           )}
         </TableCell>

@@ -1,10 +1,10 @@
 const config = require('config');
 
 module.exports = {
-  // 只有后端可用的配置
+  // Configurations available only to the backend
   serverRuntimeConfig: {},
 
-  // 前后端都可用的配置
+  // Configurations available for both front and back ends
   publicRuntimeConfig: {
     infuraUrl: config.get('infuraUrl'),
   },

@@ -21,24 +21,24 @@ const web3 = new Web3(provider);
 (async () => {
   // 4. get the accounts in the wallet
   const accounts = await web3.eth.getAccounts();
-  console.log('合约部署账户:', accounts[0]);
+  console.log('Contract Deployment Account:', accounts[0]);
 
   // 5. create contract instance and then deploy
-  console.time('合约部署耗时');
+  console.time('Time-consuming contract deployment');
   const result = await new web3.eth.Contract(JSON.parse(interface))
     .deploy({ data: bytecode })
     .send({ from: accounts[0], gas: '5000000' });
-  console.timeEnd('合约部署耗时');
+  console.timeEnd('Time-consuming contract deployment');
 
   const contractAddress = result.options.address;
 
-  console.log('合约部署成功:', contractAddress);
-  console.log('合约查看地址:', `https://rinkeby.etherscan.io/address/${contractAddress}`);
+  console.log('Successful contract deployment:', contractAddress);
+  console.log('Contract Viewing Address:', `https://rinkeby.etherscan.io/address/${contractAddress}`);
 
   // 6. writing contract address into file system
   const addressFile = path.resolve(__dirname, '../address.json');
   fs.writeFileSync(addressFile, JSON.stringify(contractAddress));
-  console.log('地址写入成功:', addressFile);
+  console.log('Address written successfully:', addressFile);
 
   process.exit();
 })();

@@ -34,21 +34,21 @@ class ProjectCreate extends React.Component {
     const { description, minInvest, maxInvest, goal } = this.state;
     console.log(this.state);
 
-    // 字段合规检查
+    // Field Compliance Checks
     if (!description) {
-      return this.setState({ errmsg: '项目名称不能为空' });
+      return this.setState({ errmsg: 'The project name cannot be empty' });
     }
     if (minInvest <= 0) {
-      return this.setState({ errmsg: '项目最小投资金额必须大于0' });
+      return this.setState({ errmsg: 'The minimum investment amount for the project must be greater than 0' });
     }
     if (maxInvest <= 0) {
-      return this.setState({ errmsg: '项目最大投资金额必须大于0' });
+      return this.setState({ errmsg: 'Maximum project investment amount must be greater than 0' });
     }
     if (maxInvest < minInvest) {
-      return this.setState({ errmsg: '项目最小投资金额必须小于最大投资金额' });
+      return this.setState({ errmsg: 'Minimum project investment amount must be less than the maximum investment amount' });
     }
     if (goal <= 0) {
-      return this.setState({ errmsg: '项目募资上限必须大于0' });
+      return this.setState({ errmsg: 'Project fundraising cap must be greater than 0' });
     }
 
     const minInvestInWei = web3.utils.toWei(minInvest, 'ether');
@@ -58,16 +58,16 @@ class ProjectCreate extends React.Component {
     try {
       this.setState({ loading: true, errmsg: '' });
 
-      // 获取账户
+      // Getting an account
       const accounts = await web3.eth.getAccounts();
       const owner = accounts[0];
 
-      // 创建项目
+      // Create a project
       const result = await ProjectList.methods
         .createProject(description, minInvestInWei, maxInvestInWei, goalInWei)
         .send({ from: owner, gas: '5000000' });
 
-      this.setState({ errmsg: '项目创建成功' });
+      this.setState({ errmsg: 'Project Created Successfully' });
       console.log(result);
 
       setTimeout(() => {
@@ -85,7 +85,7 @@ class ProjectCreate extends React.Component {
     return (
       <Layout>
         <Typography variant="title" color="inherit">
-          创建项目
+          created project
         </Typography>
         <Paper style={{ width: '60%', padding: '15px', marginTop: '15px' }}>
           <form noValidate autoComplete="off" style={{ marginBottom: '15px' }}>
@@ -93,7 +93,7 @@ class ProjectCreate extends React.Component {
               fullWidth
               required
               id="description"
-              label="项目名称"
+              label="project name"
               value={this.state.description}
               onChange={this.getInputHandler('description')}
               margin="normal"
@@ -102,7 +102,7 @@ class ProjectCreate extends React.Component {
               fullWidth
               required
               id="minInvest"
-              label="最小投资金额"
+              label="minimum investment amount"
               value={this.state.minInvest}
               onChange={this.getInputHandler('minInvest')}
               margin="normal"
@@ -112,7 +112,7 @@ class ProjectCreate extends React.Component {
               fullWidth
               required
               id="maxInvest"
-              label="最大投资金额"
+              label="maximum investment amount"
               value={this.state.maxInvest}
               onChange={this.getInputHandler('maxInvest')}
               margin="normal"
@@ -122,7 +122,7 @@ class ProjectCreate extends React.Component {
               fullWidth
               required
               id="goal"
-              label="募资上限"
+              label="project fundraising cap"
               value={this.state.goal}
               onChange={this.getInputHandler('goal')}
               margin="normal"
@@ -130,7 +130,7 @@ class ProjectCreate extends React.Component {
             />
           </form>
           <Button variant="raised" size="large" color="primary" onClick={this.onSubmit}>
-            {this.state.loading ? <CircularProgress color="secondary" size={24} /> : '创建项目'}
+            {this.state.loading ? <CircularProgress color="secondary" size={24} /> : 'Create Project'}
           </Button>
           {!!this.state.errmsg && (
             <Typography component="p" style={{ color: 'red' }}>
