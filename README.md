@@ -4,7 +4,7 @@
 <img src="docs/images/uFincs_Logo.png" style="width:200px;" />
 </p>
 
-<h1 align="center">Dapp Lab</h1>
+<h1 align="center">Smarty</h1>
 
 <p align="center">Ethereum Contract Dapp
 </p>
@@ -18,12 +18,12 @@ Ethernet Smart Contracts and DApp Development Framework and Engineering，based 
 
 This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
 
-The buzzwordy way to describe Dapp Lab is as a "privacy-first, encrypted personal finance app". Try out the free "no-account" mode to get a feel for the complete experience without having to sign up. Or, jump straight into the [user docs](docs/user/README.md) to learn how to host Dapp Lab yourself (or how to build it as a [native app](docs/user/README.md#native-app-without-backend)).
+The buzzwordy way to describe Smarty is as a "privacy-first, encrypted personal finance app". Try out the free "no-account" mode to get a feel for the complete experience without having to sign up. Or, jump straight into the [user docs](docs/user/README.md) to learn how to host Smarty yourself (or how to build it as a [native app](docs/user/README.md#native-app-without-backend)).
   
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [About Dapp Lab](#about-dapp-lab)
+- [About Smarty](#about-smarty)
   - [Security](#security)
 - [Repo Structure](#repo-structure)
   - [Tech Stack](#tech-stack)
@@ -39,32 +39,32 @@ The buzzwordy way to describe Dapp Lab is as a "privacy-first, encrypted persona
 - [Roadmap](#roadmap)
 - [License](#license)
 
-## About Dapp Lab
+## About Smarty
 
 <div align="center">
-  <img src="docs/images/uFincs_Dashboard.png" alt="Dapp Lab Dashboard" />
+  <img src="docs/images/uFincs_Dashboard.png" alt="Smarty Dashboard" />
 </div>
 
-For the more technically minded, Dapp Lab is a personal finance app with the following characteristics:
+For the more technically minded, Smarty is a personal finance app with the following characteristics:
 
 - **It's a web app**
   - Specifically, it's an offline-first PWA. That means that once you're logged-in, you can use the app without an internet connection. Heck, you can even use the app without an account!
 - **But also a 'native' app**
-  - We use [Capacitor](https://capacitorjs.com/) to wrap the Dapp Lab PWA into Android, iOS, and Electron apps (but you have to compile them yourself). Combined with Dapp Lab' no-account mode, that means you can run Dapp Lab completely standalone, without having to deal with setting up the backend API or database.
+  - We use [Capacitor](https://capacitorjs.com/) to wrap the Smarty PWA into Android, iOS, and Electron apps (but you have to compile them yourself). Combined with Smarty' no-account mode, that means you can run Smarty completely standalone, without having to deal with setting up the backend API or database.
 - **It encrypts your data**
   - All data is encrypted in-browser (or in-app) before it is sent off to be persisted in the backend database. This provides a layer of security that few other apps can boast.
 - **It forces you to enter transactions manually**
-  - You won't find any bank syncing here like other finance apps do. Nope, Dapp Lab is built on the principal of tirelessly tracking each and every penny — _by hand_.
+  - You won't find any bank syncing here like other finance apps do. Nope, Smarty is built on the principal of tirelessly tracking each and every penny — _by hand_.
 - **But it does support CSV import...**
   - This is one of the concessions to the 'manual tracking'. Grab a CSV of your transactions from your bank and you can import them directly into the app.
 - **... and recurring transactions**
   - OK, we're not completely heartless about the 'enter everything manually' goal. Recurring transactions certainly help cut down on some of that work.
 - **It also kinda allows custom integrations**
-  - What? You _really_ want bank syncing? Fine, check out the [api-proxy-prototype](https://github.com/Dapp Lab/api-proxy-prototype) to learn how you can build your own custom bank syncing integration. Just know that it'll never be supported as a first-class feature :)
+  - What? You _really_ want bank syncing? Fine, check out the [api-proxy-prototype](https://github.com/Smarty/api-proxy-prototype) to learn how you can build your own custom bank syncing integration. Just know that it'll never be supported as a first-class feature :)
 - **It supports precisely one currency**
-  - You can change which currency symbol is displayed throughout the app, but there is no multi-currency support in Dapp Lab.
+  - You can change which currency symbol is displayed throughout the app, but there is no multi-currency support in Smarty.
 
-What does Dapp Lab _not_ do (and likely will never do)?
+What does Smarty _not_ do (and likely will never do)?
 
 - **Bank syncing**
   - This was addressed above.
@@ -73,11 +73,11 @@ What does Dapp Lab _not_ do (and likely will never do)?
 - **Budgeting**
   - Double-entry accounting or bust.
 - **Track stock prices**
-  - ... or do any other kind of 'external' integration for that matter. Dapp Lab is a self-contained system; if you want custom external integrations, you can build them yourself (using, for example, the [api-proxy-prototype](https://github.com/Dapp Lab/api-proxy-prototype) as a base).
+  - ... or do any other kind of 'external' integration for that matter. Smarty is a self-contained system; if you want custom external integrations, you can build them yourself (using, for example, the [api-proxy-prototype](https://github.com/Smarty/api-proxy-prototype) as a base).
 
 ### Security
 
-Want to learn more about the security aspects of Dapp Lab? Check out the [security guide](https://Dapp Lab.com/policies/security) on the marketing site.
+Want to learn more about the security aspects of Smarty? Check out the [security guide](https://Smarty.com/policies/security) on the marketing site.
 
 
 ## Repo Structure
@@ -216,12 +216,12 @@ You should import [babel-polyfill](https://cdn.baomitu.com/babel-polyfill) for e
 
 Node.js 8.x 以上
 Chrome
-有良好命令行支持的系统
+Systems with good command line support
 
 
 ## Contributors
 
-Like any other good open source project, Dapp Lab is open to contributions. Just make sure to follow the rules and guidelines in the [CONTRIBUTING](CONTRIBUTING.md) file. Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Like any other good open source project, Smarty is open to contributions. Just make sure to follow the rules and guidelines in the [CONTRIBUTING](CONTRIBUTING.md) file. Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
@@ -232,7 +232,7 @@ Like any other good open source project, Dapp Lab is open to contributions. Just
 
 ## Roadmap
 
-Frankly, Dapp Lab has met and exceeded my own expectations and use cases. As such, it does not have an active roadmap — I just work on what I want when I feel like it.
+Frankly, Smarty has met and exceeded my own expectations and use cases. As such, it does not have an active roadmap — I just work on what I want when I feel like it.
 
 ## License
 
